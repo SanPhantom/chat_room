@@ -19,7 +19,7 @@
           :label="concat.message"
           :border='border'
           @click="toChat(concat)"
-          :to="{name: 'chatroom', query: concat}"
+          :to="{name: 'chatroom', params: concat}"
         >
           <van-image
             slot="icon"

@@ -1,12 +1,79 @@
 <template>
   <div class="container">
-    <van-nav-bar fixed :title="concat.name">
-      
+    <van-nav-bar
+      fixed
+      :title="concat.name"
+      left-arrow
+      left-text="返回"
+      @click-left="$router.go(-1)"
+    >
     </van-nav-bar>
 
     <div class="content">
-      
+      <van-row type="flex" justify="end">
+        <van-col span="16">
+          <div class="avater">
+            <van-image
+              fit="cover"
+              round
+              width="1rem"
+              height="1rem"
+              src="https://img.yzcdn.cn/vant/cat.jpeg"
+            ></van-image>
+          </div>
+          <div class="info">
+            <p>UserName-player ii@12:50:03</p>
+            <div class="meg"></div>
+          </div>
+        </van-col>
+
+        <van-col span="16">
+          
+          <div class="info">
+            <p>12:50:03@UserName-player ii</p>
+            <div class="meg"></div>
+          </div>
+          <div class="avater">
+            <van-image
+              fit="cover"
+              round
+              width="1rem"
+              height="1rem"
+              src="https://img.yzcdn.cn/vant/cat.jpeg"
+            ></van-image>
+          </div>
+        </van-col>
+      </van-row>
+
+      <div class="msg-box right">
+        <div class="avater">
+          <van-image
+            fit="cover"
+            round
+            width="1rem"
+            height="1rem"
+            src="https://img.yzcdn.cn/vant/cat.jpeg"
+          ></van-image>
+        </div>
+        <div class="info">
+          <p>UserName-player ii@12:50:03</p>
+          <div class="meg"></div>
+        </div>
+      </div>
     </div>
+
+    <van-cell-group class="msg-input-box">
+      <van-field v-model="msg" center placeholder="请输入发送消息">
+        <van-button
+          :disabled="msg === ''"
+          slot="button"
+          size="small"
+          type="primary"
+          @click="sendMsg"
+          >发 送</van-button
+        >
+      </van-field>
+    </van-cell-group>
   </div>
 </template>
 
@@ -16,24 +83,53 @@ export default {
   data() {
     return {
       hah: 1,
+      msg: "",
       concat: {
-          name: ''
+        name: ""
       }
     };
   },
   created() {
-      this.getRouterData()
+    this.getRouterData();
   },
   methods: {
     getRouterData() {
-        this.concat = this.$route.query;
-        // console.log(this.$route.query)
+      this.concat = this.$route.params;
+    },
+    sendMsg() {
+      this.$toast(this.msg);
+
+      this.msg = "";
     }
   }
 };
 </script>
 
 <style scoped lang="scss">
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.content {
+  padding: 56px 10px;
+  .van-col {
+    display: flex;
+    align-items: flex-start;
+    &.left {
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+    &.right {
+      justify-content: flex-end;
+      // margin-right: 0;
+    }
+  }
+}
+
 .van-cell {
   .van-image {
     margin-right: 10px;
@@ -65,5 +161,13 @@ export default {
   line-height: 20px;
   border-radius: 10px;
   margin: auto 0;
+}
+
+.msg-input-box {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border-top: 1px solid #b8b8b8;
 }
 </style>
