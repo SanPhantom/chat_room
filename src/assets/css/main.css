@@ -3,10 +3,20 @@
     padding: 0;
 }
 
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
 .mint-header {
     font-size: initial;
 }
 
 .content {
     padding-top: 46px;
+}
+
+.van-cell .van-field .van-field__control {
+    color: #ffffff;
 }

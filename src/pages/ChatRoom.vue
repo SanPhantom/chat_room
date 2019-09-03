@@ -10,56 +10,37 @@
     </van-nav-bar>
 
     <div class="content">
-      <van-row type="flex" justify="end">
-        <van-col span="16">
-          <div class="avater">
-            <van-image
-              fit="cover"
-              round
-              width="1rem"
-              height="1rem"
-              src="https://img.yzcdn.cn/vant/cat.jpeg"
-            ></van-image>
-          </div>
-          <div class="info">
-            <p>UserName-player ii@12:50:03</p>
-            <div class="meg"></div>
-          </div>
-        </van-col>
-
-        <van-col span="16">
-          
-          <div class="info">
-            <p>12:50:03@UserName-player ii</p>
-            <div class="meg"></div>
-          </div>
-          <div class="avater">
-            <van-image
-              fit="cover"
-              round
-              width="1rem"
-              height="1rem"
-              src="https://img.yzcdn.cn/vant/cat.jpeg"
-            ></van-image>
-          </div>
-        </van-col>
-      </van-row>
-
-      <div class="msg-box right">
-        <div class="avater">
+      <van-list>
+        <van-cell :border="border">
           <van-image
-            fit="cover"
             round
-            width="1rem"
-            height="1rem"
+            fit="cover"
             src="https://img.yzcdn.cn/vant/cat.jpeg"
           ></van-image>
-        </div>
-        <div class="info">
-          <p>UserName-player ii@12:50:03</p>
-          <div class="meg"></div>
-        </div>
-      </div>
+
+          <div class="msg-info">
+            <p class="time">SanPhantom Kill@20:25:25</p>
+            <div class="msg">
+              Hello, List
+              组件通过loading和finished两个变量控制加载状态，当组件滚动到底部时，会触发load事件并将loading设置成true。此时可以发起异步操作并更新数据，数据更新完毕后，将loading设置成false即可。若数据已全部加载完毕，则直接将finished设置成true即可。
+            </div>
+          </div>
+        </van-cell>
+        <van-cell :border="border" class="right">
+          <div class="msg-info">
+            <p class="time">SanPhantom Kill@20:25:25</p>
+            <div class="msg">
+              Hello, List
+              组件通过loading和finished两个变量控制加载状态，当组件滚动到底部时/
+            </div>
+          </div>
+          <van-image
+            round
+            fit="cover"
+            src="https://img.yzcdn.cn/vant/cat.jpeg"
+          ></van-image>
+        </van-cell>
+      </van-list>
     </div>
 
     <van-cell-group class="msg-input-box">
@@ -82,6 +63,7 @@ export default {
   name: "List",
   data() {
     return {
+      border: false,
       hah: 1,
       msg: "",
       concat: {
@@ -116,29 +98,47 @@ export default {
 
 .content {
   padding: 56px 10px;
-  .van-col {
-    display: flex;
-    align-items: flex-start;
-    &.left {
-      justify-content: flex-start;
-      margin-left: 0;
+  .van-cell {
+    padding: 0;
+    .van-image {
+      // flex: 1;
+      margin-right: 10px;
+      width: 40px;
+      height: 40px;
+    }
+    .msg-info {
+      width: 220px;
+      .msg {
+        padding: 10px;
+        background-color: green;
+        color: #ffffff;
+        border-radius: 0 10px 10px 10px;
+      }
+    }
+    & + .van-cell {
+      margin-top: 10px;
     }
     &.right {
-      justify-content: flex-end;
-      // margin-right: 0;
-    }
-  }
-}
+      .van-image {
+        margin-left: 10px;
+        margin-right: 0;
+      }
+      .time {
+        text-align: right;
+      }
+      .msg {
+        border-radius: 10px 0 10px 10px;
+      }
 
-.van-cell {
-  .van-image {
-    margin-right: 10px;
-  }
-  &__value {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-left: 10px;
+      .van-cell__value {
+        justify-content: flex-end;
+      }
+    }
+    &__value {
+      display: flex;
+      align-items: flex-start;
+      padding-left: 10px;
+    }
   }
 }
 

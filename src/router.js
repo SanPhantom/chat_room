@@ -19,5 +19,10 @@ export default new Router({
         name: 'chatroom',
         component: () =>
             import ('@/pages/ChatRoom.vue')
+    }, {
+        path: '/login',
+        name: 'login',
+        component: () =>
+            import ('@/pages/Login.vue')
     }]
 })

@@ -1,22 +1,7 @@
 module.exports = {
-    socketUrl: 'ws://localhost:3000/chat',
-    websocket: function() {
-        let socket = new WebSocket(this.socketUrl);
-        socket.onopen = this.websocketOpen;
-        socket.onmessage = this.websocketMessage;
-        socket.onerror = this.websocketError;
-        socket.onclose = this.websocketClose;
-    },
-    websocketOpen: function() {
+    socketUrl: 'ws://192.168.5.117:3000/',
 
-    },
-    websocketError: function() {
-        this.websocket();
-    },
-    websocketMessage: function() {
-
-    },
-    websocketClose: function() {
+    initSocket: function() {
 
     }
 }
