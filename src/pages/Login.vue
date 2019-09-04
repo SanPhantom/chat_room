@@ -16,6 +16,9 @@
     <van-cell :border="border">
       <van-button type="primary" size="large" text="登 录"></van-button>
     </van-cell>
+    <div class="toReg">
+      <span>注册新账号>></span>
+    </div>
   </div>
 </template>
 
@@ -36,7 +39,7 @@ export default {
     let _this = this;
     // let video = _this.$refs.video;
     this.$nextTick(() => {
-        _this.$refs.video.play();
+      _this.$refs.video.play();
       _this.$refs.video.style.width = document.body.clientWidth + "px";
       _this.$refs.video.style.height = document.body.clientHeight + "px";
     });
@@ -69,6 +72,12 @@ export default {
       // background-color: transparent;
       font-size: 18px;
     }
+  }
+  .toReg {
+    padding: 10px 0;
+    color: #ffffff;
+    font-size: 14px;
+    text-align: right;
   }
 }
 
