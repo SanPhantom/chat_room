@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import axios from 'axios'
 import "lib-flexible/flexible"
 // import 'hotcss/src/hotcss'
 
@@ -15,6 +16,13 @@ import 'vant/lib/index.css'
 Vue.use(Vant)
 
 import './assets/css/main.css'
+
+axios.defaults.baseURL = 'http://127.0.0.1:3000';
+axios.defaults.headers.common['Token'] = window.localStorage.getItem('token') || '';
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
+
+Vue.prototype.$axios = axios;
 
 
 
@@ -53,7 +61,7 @@ new Vue({
     },
     methods: {
         checklogin: function() {
-            if (this.getCookie('id')) {
+            if (this.getCookie('token')) {
                 this.$router.push('/');
 
             } else {

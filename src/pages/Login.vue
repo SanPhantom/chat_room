@@ -8,13 +8,25 @@
     </div>
 
     <van-cell :border="border">
-      <van-field v-model="username" placeholder="请输入用户名" />
+      <van-field
+        v-model="login_info.phone"
+        placeholder="请输入手机号"
+      />
     </van-cell>
     <van-cell :border="border">
-      <van-field v-model="password" type="password" placeholder="请输入密码" />
+      <van-field
+        v-model="login_info.password"
+        type="password"
+        placeholder="请输入密码"
+      />
     </van-cell>
     <van-cell :border="border">
-      <van-button type="primary" size="large" text="登 录"></van-button>
+      <van-button
+        type="primary"
+        size="large"
+        @click="sub_login"
+        text="登 录"
+      ></van-button>
     </van-cell>
     <div class="toReg">
       <span>注册新账号>></span>
@@ -31,8 +43,10 @@ export default {
       bgsrc: "@/assets/video/login_bg.mp4",
       muted: true,
       border: false,
-      username: "",
-      password: ""
+      login_info: {
+        phone: "",
+        password: ""
+      }
     };
   },
   created() {
@@ -44,7 +58,35 @@ export default {
       _this.$refs.video.style.height = document.body.clientHeight + "px";
     });
   },
-  methods: {}
+  methods: {
+    sub_login() {
+      const _this = this;
+      let { phone, password } = this.login_info;
+      if (phone === "" || password === "") {
+        this.$toast({
+          message: "有未填项",
+          duration: 2000,
+          position: "bottom"
+        });
+      } else if (!/^1[3456789]\d{9}$/.test(phone)) {
+        this.$toast({
+          message: "手机号格式错误",
+          duration: 2000,
+          position: "bottom"
+        });
+      } else {
+        // console.log(this.$axios);
+        this.$axios.post("/login", this.login_info).then((res) => {
+          let data = res.data;
+          if (data.code === 200) {
+            // console.log(data);
+            window.localStorage.setItem('token', data.token);
+            _this.$toast('登录成功');
+          }
+        });
+      }
+    }
+  }
 };
 </script>
 
