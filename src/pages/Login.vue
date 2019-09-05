@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import {mapState, mapMutations} from 'vuex'
 export default {
   name: "login",
   data() {
@@ -79,9 +80,15 @@ export default {
         this.$axios.post("/login", this.login_info).then((res) => {
           let data = res.data;
           if (data.code === 200) {
-            // console.log(data);
+            console.log(data);
             window.localStorage.setItem('token', data.token);
             _this.$toast('登录成功');
+            let user = {
+              name: data.data.username,
+              id: data.data.id
+            }
+            console.log(user);
+            // _this.$socket.emit('join', user)
           }
         });
       }

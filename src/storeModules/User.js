@@ -16,7 +16,7 @@ const mutations = {
 
 const actions = {
     login: function() {
-
+        
     }
 }
 

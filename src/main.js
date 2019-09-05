@@ -9,7 +9,7 @@ import "lib-flexible/flexible"
 import VueSocketIO from 'vue-socket.io'
 import socketio from 'socket.io-client'
 
-Vue.use(VueSocketIO, socketio('ws://192.168.5.117:3000', { path: '/chat/socket.io' }));
+Vue.use(VueSocketIO, socketio('ws://127.0.0.1:3000', { path: '/chat/socket.io' }));
 
 import Vant from 'vant'
 import 'vant/lib/index.css'
@@ -46,11 +46,11 @@ new Vue({
     },
     created() {
         this.checklogin();
-        this.$socket.emit('join', {
-            id: '123478',
-            name: 'ttc',
-            phone: '15972167950'
-        });
+        // this.$socket.emit('join', {
+        //     id: '123478',
+        //     name: 'ttc',
+        //     phone: '15972167950'
+        // });
     },
     beforeDestroy() {
         this.$socket.emit('discount', {
