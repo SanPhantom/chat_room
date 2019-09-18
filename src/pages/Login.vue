@@ -1,8 +1,9 @@
 <template>
   <div class="container">
-    <video class="bgvid" ref="video" id="bgvid" :muted="muted" loop autoplay>
+    <!-- <video class="bgvid" ref="video" id="bgvid" :muted="muted" loop autoplay>
       <source src="@/assets/video/login_bg.mp4" type="video/mp4" />
-    </video>
+    </video> -->
+    <img src="@/assets/login_bg.jpg" width="100%" class="bgimg" alt="">
     <div class="logo">
       <h1>Night Elf Chat</h1>
     </div>
@@ -23,19 +24,21 @@
     <van-cell :border="border">
       <van-button
         type="primary"
-        size="large"
+        size="normal"
+        block
         @click="sub_login"
         text="登 录"
+        color="#5ddc5d"
       ></van-button>
     </van-cell>
     <div class="toReg">
-      <span>注册新账号>></span>
+      <span @click="$router.push('/register')">注册新账号>></span>
     </div>
   </div>
 </template>
 
 <script>
-import {mapState, mapMutations} from 'vuex'
+// import {mapState, mapMutations} from 'vuex'
 export default {
   name: "login",
   data() {
@@ -54,9 +57,7 @@ export default {
     let _this = this;
     // let video = _this.$refs.video;
     this.$nextTick(() => {
-      _this.$refs.video.play();
-      _this.$refs.video.style.width = document.body.clientWidth + "px";
-      _this.$refs.video.style.height = document.body.clientHeight + "px";
+    
     });
   },
   methods: {
@@ -83,12 +84,14 @@ export default {
             // console.log(data);
             window.localStorage.setItem('token', data.token);
             _this.$toast('登录成功');
-            let user = {
-              name: data.data.username,
-              id: data.data.id
-            }
+            // let user = {
+            //   name: data.data.username,
+            //   id: data.data.id
+            // }
             // console.log(user);
             // _this.$socket.emit('join', user)
+          } else {
+            this.$toast(data.message);
           }
         });
       }
@@ -119,7 +122,7 @@ export default {
     }
     .van-button {
       // background-color: transparent;
-      font-size: 18px;
+      font-size: 16px;
     }
   }
   .toReg {
@@ -130,12 +133,12 @@ export default {
   }
 }
 
-.bgvid {
+.bgimg {
   position: fixed;
   left: 0;
   top: 0;
-  right: 0;
-  bottom: 0;
+  // right: 0;
+  // bottom: 0;
   z-index: -100;
   background-size: cover;
 }

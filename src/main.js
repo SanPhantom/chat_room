@@ -6,10 +6,10 @@ import axios from 'axios'
 import "lib-flexible/flexible"
 // import 'hotcss/src/hotcss'
 
-import VueSocketIO from 'vue-socket.io'
-import socketio from 'socket.io-client'
+// import VueSocketIO from 'vue-socket.io'
+// import socketio from 'socket.io-client'
 
-Vue.use(VueSocketIO, socketio('ws://127.0.0.1:3000', { path: '/chat/socket.io' }));
+// Vue.use(VueSocketIO, socketio('ws://127.0.0.1:3000', { path: '/chat/socket.io' }));
 
 import Vant from 'vant'
 import 'vant/lib/index.css'
