@@ -82,7 +82,9 @@ export default {
     };
   },
   methods: {
-    subReg() {}
+    subReg() {
+      console.log('123');
+    }
   }
 };
 </script>
