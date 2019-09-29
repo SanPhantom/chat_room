@@ -54,7 +54,7 @@ export default {
     };
   },
   created() {
-    let _this = this;
+    // let _this = this;
     // let video = _this.$refs.video;
     this.$nextTick(() => {
     

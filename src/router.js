@@ -8,25 +8,30 @@ export default new Router({
     routes: [{
         path: '/',
         name: 'index',
-        redirect: '/list'
-    }, {
-        path: '/list',
-        name: 'list',
+        // redirect: '/list',
         component: () =>
-            import('@/pages/List.vue')
+            import ('@/pages/Index.vue'),
+        redirect: '/list',
+        children: [{
+            path: '/list',
+            name: 'list',
+            component: () =>
+                import ('@/pages/List.vue')
+        }]
     }, {
         path: '/chatroom',
         name: 'chatroom',
         component: () =>
-            import('@/pages/ChatRoom.vue')
+            import ('@/pages/ChatRoom.vue')
     }, {
         path: '/login',
         name: 'login',
         component: () =>
-            import('@/pages/Login.vue')
+            import ('@/pages/Login.vue')
     }, {
         path: '/register',
         name: 'register',
-        component: () => import('@/pages/Register.vue')
+        component: () =>
+            import ('@/pages/Register.vue')
     }]
 })

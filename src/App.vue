@@ -11,6 +11,11 @@
 
 export default {
   name: 'app',
+  data() {
+    return {
+      active: 0
+    }
+  },
   components: {
     // HelloWorld
   },
